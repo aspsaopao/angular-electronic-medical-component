@@ -1,0 +1,48 @@
+import { IModelRequestHandler } from '../core/model-request-handler';
+import { RequestParams, ServerCommandRequest } from '../core/model/json/command-request';
+import { SubDocument } from '../core/model/sub-document';
+import { IRichEditControl } from './interfaces/i-rich-edit-core';
+export declare class ServerDispatcher implements IModelRequestHandler {
+    responseWaitingTime: number;
+    pendingPeriod: number;
+    maxCommandCount: number;
+    control: IRichEditControl;
+    lastRequestInQueue: ServerCommandRequest;
+    wasModifiedOnServer: boolean;
+    requestID: number;
+    editRequestID: number;
+    private testMode;
+    private waitingTimerID;
+    private pendingTimerID;
+    protected numActiveSaveRequests: number;
+    protected isWaiting: boolean;
+    protected lockQueue: boolean;
+    protected queue: Record<number, ServerCommandRequest>;
+    protected sendedRequests: Record<number, ServerCommandRequest>;
+    protected numQueueLockers: number;
+    constructor(control: IRichEditControl);
+    dispose(): void;
+    initialize(testMode: boolean): void;
+    saveInProgress(): boolean;
+    pushRequest(request: ServerCommandRequest, requestParams: RequestParams): void;
+    pushLoadNextChunksRequest(subDocument: SubDocument, startPosition: number): void;
+    processSaveResponse(historyId: number): void;
+    getRequestJSON(): string;
+    reset(): void;
+    forceSendingRequest(): void;
+    hasQueue(): boolean;
+    isQueueLocked(): boolean;
+    onGetResponse(responce: any, testMode?: boolean): boolean;
+    onGetResponseCore(responce: any): void;
+    private clearTimers;
+    private clearWaitingTimer;
+    private sendRequestCore;
+    private showLoadingPanelIfNeeded;
+    private shouldSendRequestsWithCallback;
+    private getRequestList;
+    private removeModelRequests;
+    private processCommandsResponce;
+    private onPendingTimerExpired;
+    private onWaitingTimerExpired;
+}
+//# sourceMappingURL=server-dispatcher.d.ts.map

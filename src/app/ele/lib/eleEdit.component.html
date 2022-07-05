@@ -1,0 +1,89 @@
+<div id="eleedit" style="width: {{editOption.width}};height: {{editOption.height}}">
+
+  <div nz-row>
+    <div nz-col nzSpan="4">
+      <nz-tabset>
+        <nz-tab nzTitle="要素">
+
+          <nz-tree-view [nzTreeControl]="treeControl" [nzDataSource]="dataSource">
+            <nz-tree-node *nzTreeNodeDef="let node" nzTreeNodeIndentLine>
+              <nz-tree-node-toggle *ngIf="showLeafIcon" nzTreeNodeNoopToggle>
+                <i nz-icon nzType="caret-down" nzTreeNodeToggleRotateIcon></i>
+              </nz-tree-node-toggle>
+              <nz-tree-node-option (nzClick)="eleTreeClick(node)">
+                {{ node.name }}
+              </nz-tree-node-option>
+            </nz-tree-node>
+
+            <nz-tree-node *nzTreeNodeDef="let node; when: hasChild" nzTreeNodeIndentLine>
+              <nz-tree-node-toggle>
+                <i nz-icon nzType="caret-down" nzTreeNodeToggleRotateIcon></i>
+              </nz-tree-node-toggle>
+              <nz-tree-node-option>
+                {{ node.name }}
+              </nz-tree-node-option>
+            </nz-tree-node>
+          </nz-tree-view>
+
+        </nz-tab>
+        <nz-tab nzTitle="患者病历">
+         
+          <nz-table [nzShowPagination]="false"  nzSize="small" #basicTable  [nzData]="editOption.patientMedicalList">
+            <thead>
+              <tr>
+                <th>病历名称</th>
+                <th>添加时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data" (dblclick)="patientmedicaldbClick(data)">
+                <td>{{data.medicalName}}</td>
+                <td>{{data.createtime}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </nz-tab>
+        <nz-tab nzTitle="范文">等待对接</nz-tab>
+        <nz-tab nzTitle="字符">一些特殊字符</nz-tab>
+      </nz-tabset>
+    </div>
+    <div nz-col nzSpan="20">
+      <nz-tabset>
+        <nz-tab nzTitle="文件">
+          <div class="richeditmenu">
+            <nz-space>
+              <button *nzSpaceItem nz-button (click)="save()">保存</button>
+              <button *nzSpaceItem nz-button (click)="print()">打印</button>
+              <nz-upload *nzSpaceItem  [nzBeforeUpload]="beforeUpload"
+                [nzOpenFileDialogOnClick]="openFileDialogOnClick">
+                <button nz-button id="upload">
+                  打开
+                </button>
+              </nz-upload>
+            </nz-space>
+          </div>
+        </nz-tab>
+        <nz-tab nzTitle="功能">
+          <div class="richeditmenu">
+            <nz-space>
+              <button *nzSpaceItem nz-button>病历调用</button>
+          <button *nzSpaceItem nz-button (click)="addSignature()">签名添加</button>
+            </nz-space>
+          </div>
+
+
+        </nz-tab>
+        <nz-tab nzTitle="其他">
+          <div class="richeditmenu">
+            <nz-space>
+              <button *nzSpaceItem nz-button>参数设置</button>
+              <button *nzSpaceItem nz-button>提交建议</button>
+            </nz-space>
+
+          </div>
+        </nz-tab>
+      </nz-tabset>
+      <div id="RichEdit"></div>
+    </div>
+  </div>
+</div>

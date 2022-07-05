@@ -1,0 +1,48 @@
+import { ICloneable, ISupportCopyFrom } from '@devexpress/utils/lib/types';
+import { IHashBasedCacheType } from '../caches/hash-based-cache';
+import { ColorProvider } from './color-provider';
+import { ColorType, ThemeColorValues } from './enums';
+export declare class ColorModelInfo implements ICloneable<ColorModelInfo>, ISupportCopyFrom<ColorModelInfo>, IHashBasedCacheType<ColorModelInfo> {
+    private static defaultColorIndex;
+    static get nullColor(): ColorModelInfo;
+    static readonly empty: ColorModelInfo;
+    static readonly auto: ColorModelInfo;
+    static readonly autoColor: ColorModelInfo;
+    static readonly noColor: ColorModelInfo;
+    static makeByThemeColorIndex(themeColorIndex: number, tint?: number): ColorModelInfo;
+    static makeByColor(color: number, tint?: number): ColorModelInfo;
+    static makeByColorIndex(colorIndex: number, tint?: number): ColorModelInfo;
+    private _colorType;
+    private _rgb;
+    private _themeColorIndex;
+    private _themeValue;
+    private _colorIndex;
+    private _tint;
+    private hash;
+    get colorType(): ColorType;
+    private get rgb();
+    private set rgb(value);
+    get themeColorIndex(): number;
+    set themeColorIndex(value: number);
+    get themeValue(): ThemeColorValues;
+    set themeValue(value: ThemeColorValues);
+    get colorIndex(): number;
+    set colorIndex(value: number);
+    get tint(): number;
+    set tint(value: number);
+    get isEmpty(): boolean;
+    private constructor();
+    private restoreDefaultValues;
+    private setColorType;
+    private static makeAuto;
+    toRgb(colorProvider: ColorProvider): number;
+    clone(): ColorModelInfo;
+    copyFrom(value: ColorModelInfo): void;
+    equals(info: ColorModelInfo): boolean;
+    static equalsBinary(a: ColorModelInfo, b: ColorModelInfo): boolean;
+    protected calculateHash(): number;
+    getHashCode(): number;
+    toJSON(): any;
+    toDebugString(): string;
+}
+//# sourceMappingURL=color-model-info.d.ts.map

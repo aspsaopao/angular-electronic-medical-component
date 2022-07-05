@@ -1,0 +1,44 @@
+import { SubDocument } from '../../../core/model/sub-document';
+import { Table } from '../../../core/model/tables/main-structures/table';
+import { TableCell } from '../../../core/model/tables/main-structures/table-cell';
+import { TableRow } from '../../../core/model/tables/main-structures/table-row';
+import { TableLayoutType } from '../../../core/model/tables/secondary-structures/table-base-structures';
+import { TableWidthUnit } from '../../../core/model/tables/secondary-structures/table-units';
+import { RtfTable } from '../model/table/rtf-table';
+import { RtfTableCell } from '../model/table/rtf-table-cell';
+import { RtfTableRow } from '../model/table/rtf-table-row';
+import { RtfTableGrid } from './table-grid';
+import { RtfTableReader } from './table-reader';
+export declare class RtfTableConverter {
+    readonly tableReader: RtfTableReader;
+    readonly rtfCellMap: Record<number, TableCell>;
+    tablesQueue: RtfTable[];
+    constructor(tableReader: RtfTableReader);
+    get subDocument(): SubDocument;
+    convertTables(rtfTables: RtfTable[], _isCopySingleCellAsText: boolean): void;
+    convertTable(rtfTable: RtfTable, tblIndex: number): void;
+    rtfTableIsValid(rtfTable: RtfTable): boolean;
+    protected prepareRtfTable(table: RtfTable): void;
+    protected shouldUseFloatingPosition(_table: RtfTable): boolean;
+    protected calculateTableLeftOffset(table: RtfTable): number;
+    protected calculateTableIndent(table: RtfTable): number;
+    getCellLeftMargin(table: RtfTable): TableWidthUnit;
+    getActualWidth(unitInfo: TableWidthUnit): number;
+    convertTableCore(table: Table, rtfTable: RtfTable): void;
+    protected calculateTableGrid(table: RtfTable): RtfTableGrid;
+    protected prepareRtfRow(row: RtfTableRow, grid: RtfTableGrid, tableLayoutType: TableLayoutType): void;
+    private calculateWidthAfter;
+    private calculateTotalRowWidth;
+    prepareRtfRowCells(row: RtfTableRow, grid: RtfTableGrid, gridBefore: number, tableLayoutType: TableLayoutType): void;
+    calculateEquidistantCellOrder(cells: RtfTableCell[], index: number, left: number): number;
+    calculateRowColumnSpan(row: RtfTableRow): number;
+    convertRow(row: TableRow, rtfRow: RtfTableRow): void;
+    convertCell(row: TableRow, rtfCell: RtfTableCell): void;
+    mergeCells(firstCell: RtfTableCell): void;
+    removeCell(cells: RtfTableCell[], cell: RtfTableCell): void;
+    recalcParagraphIndexes(_removedCell: RtfTableCell): void;
+    recalcParagraphIndexesInRow(_row: RtfTableRow, _cellIndex: number, _delta: number): void;
+    recalcParagraphIndexesInTable(_table: RtfTable, _rowIndex: number, _delta: number, _paragraphIndex: number): void;
+    recalcParagraphIndexesInTables(delta: number, paragraphIndex: number): void;
+}
+//# sourceMappingURL=table-converter.d.ts.map

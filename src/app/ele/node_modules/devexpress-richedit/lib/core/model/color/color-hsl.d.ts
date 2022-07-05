@@ -1,0 +1,47 @@
+import { IEquatable } from '@devexpress/utils/lib/types';
+export declare class ColorHSL implements IEquatable<ColorHSL> {
+    static readonly MaxAngle: number;
+    static readonly MaxThousandthOfPercentage = 100000;
+    private _hue;
+    private _saturation;
+    private _luminance;
+    static readonly defaultValue: ColorHSL;
+    constructor(hue: number, saturation: number, luminance: number);
+    calculateHash(): number;
+    static makeFromHSL(hue: number, saturation: number, luminance: number): ColorHSL;
+    static rgbToHsl(r: number, g: number, b: number): any[];
+    static fromColorRGB(color: number): ColorHSL;
+    static calculateColorRGB(color: number, tint: number): number;
+    toRgb(): number;
+    get hue(): number;
+    set hue(value: number);
+    get saturation(): number;
+    set saturation(value: number);
+    get luminance(): number;
+    set luminance(value: number);
+    get floatHue(): number;
+    set floatHue(value: number);
+    get floatSaturation(): number;
+    set floatSaturation(value: number);
+    get floatLuminance(): number;
+    set floatLuminance(value: number);
+    getComplementColor(): ColorHSL;
+    applyHue(value: number): ColorHSL;
+    applyHueMod(value: number): ColorHSL;
+    applyHueOffset(value: number): ColorHSL;
+    applySaturation(value: number): ColorHSL;
+    applySaturationMod(value: number): ColorHSL;
+    applySaturationOffset(value: number): ColorHSL;
+    applyLuminance(value: number): ColorHSL;
+    applyLuminanceMod(value: number): ColorHSL;
+    applyLuminanceOffset(value: number): this;
+    private fixHue;
+    private toIntValue;
+    private fixIntValue;
+    private getIntValue;
+    private getFloatValue;
+    private getValidValue;
+    private applyTint;
+    equals(obj: ColorHSL): boolean;
+}
+//# sourceMappingURL=color-hsl.d.ts.map

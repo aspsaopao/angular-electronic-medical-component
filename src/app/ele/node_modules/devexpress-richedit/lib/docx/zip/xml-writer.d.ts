@@ -1,0 +1,41 @@
+import { DocxConstants, DocxNsType } from '../utils/constants';
+export declare class XmlWriter {
+    private dom;
+    private curr;
+    private constants;
+    private rootNamespaces;
+    constructor(constants: DocxConstants);
+    initNS(rootElementName: string, rootElementNamespace: string): this;
+    convertToString(): string;
+    addNamespaceToRootElement(type: DocxNsType): void;
+    elementStart(name: string): this;
+    elementStartNS(docxType: DocxNsType, localName: string): this;
+    endElement(): this;
+    attr(attrName: string, value: string): this;
+    attrNS(docxType: DocxNsType, attrName: string, value: string): this;
+    writeString(text: string): this;
+    writeRaw(str: string): void;
+    writeWpEmptyElement(tag: string): void;
+    writeWpStartElement(tag: string): void;
+    writeWpsStartElement(tag: string): void;
+    writeWpDrawingStartElement(name: string): void;
+    writeDrawingStartElement(name: string): void;
+    writeWp14DrawingStartElement(name: string): void;
+    writeMcStartElement(name: string): void;
+    writePicDrawingStartElement(name: string): void;
+    writeWpStringValue(tag: string, value: string): void;
+    writeWpBoolValue(tag: string, value: boolean): void;
+    writeWpBoolValueAsTag(tag: string, value: boolean): void;
+    writeWpIntValue(tag: string, value: number): void;
+    writeWpStringAttr(attrName: string, value: string): void;
+    writeWpBoolAttr(attr: string, value: boolean): void;
+    writeWpIntAttr(attr: string, value: number): void;
+    writeDCEmptyElement(tag: string): void;
+    writeCPEmptyElement(tag: string): void;
+    writeBoolValue(tag: string, value: boolean): void;
+    writeIntValue(tag: string, value: number): void;
+    writeWpEmptyOrFalseValue(tag: string, value: boolean): void;
+    private prefixPlusLocalName;
+    private convertBoolToString;
+}
+//# sourceMappingURL=xml-writer.d.ts.map

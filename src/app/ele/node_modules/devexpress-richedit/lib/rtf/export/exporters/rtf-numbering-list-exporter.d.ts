@@ -1,0 +1,40 @@
+import { IListLevel, IOverrideListLevel, ListLevel } from '../../../core/model/numbering-lists/list-level';
+import { NumberingFormat } from '../../../core/model/numbering-lists/list-level-properties';
+import { AbstractNumberingList, NumberingList } from '../../../core/model/numbering-lists/numbering-list';
+import { RtfBuilder } from '../rtf-builder';
+import { RtfCharacterPropertiesExporter } from './rtf-character-properties-exporter';
+import { RtfContentExporter } from './rtf-content-exporter';
+import { RtfParagraphPropertiesExporter } from './rtf-paragraph-properties-exporter';
+export declare class RtfNumberingListExporter {
+    rtfExporter: RtfContentExporter;
+    rtfBuilder: RtfBuilder;
+    text: string;
+    number: string;
+    characterPropertiesExporter: RtfCharacterPropertiesExporter;
+    paragraphPropertiesExporter: RtfParagraphPropertiesExporter;
+    textLength: number;
+    constructor(rtfExporter: RtfContentExporter);
+    export(numberingLists: NumberingList[], startIndex: number, count: number): void;
+    getAbstractNumberingLists(numberingLists: NumberingList[], startIndex: number, count: number): AbstractNumberingList[];
+    exportAbstractNumberingLists(abstractNumberingLists: AbstractNumberingList[]): void;
+    exportAbstractNumberingList(list: AbstractNumberingList): void;
+    exportListLevels(listLevels: ListLevel[]): void;
+    exportListOverrideTable(numberingLists: NumberingList[], startIndex: number, count: number): void;
+    exportListOverride(numberingList: NumberingList): void;
+    getListOverrideCount(numberingList: NumberingList): number;
+    isOverrideLevel(listLevel: IOverrideListLevel): boolean;
+    exportListOverrideLevels(numberingList: NumberingList): void;
+    exportListOverrideLevel(level: IOverrideListLevel): void;
+    exportListLevel(listLevel: IListLevel): void;
+    protected getNumberingListFormat(numberingFormat: NumberingFormat): number;
+    static getListLevelSeparator(separator: string): number;
+    exportListLevelTextAndNumber(displayFormatString: string, levelTemplateId: number): void;
+    getTextAndNumber(displayFormatString: string): void;
+    addLevelNumber(displayFormatString: string, i: number): number;
+    addLevelNumberCore(displayFormatString: string, i: number): number;
+    doubleBrackets(displayFormatString: string, i: number): boolean;
+    addChar(ch: string, i: number): number;
+    addEscapedChar(ch: string, i: number): number;
+    exportListLevelCharacterAndParagraphProperties(listLevel: IListLevel): void;
+}
+//# sourceMappingURL=rtf-numbering-list-exporter.d.ts.map

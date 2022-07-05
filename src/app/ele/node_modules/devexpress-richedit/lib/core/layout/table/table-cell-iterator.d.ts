@@ -1,0 +1,67 @@
+import { FixedInterval } from '@devexpress/utils/lib/intervals/fixed';
+import { IMeasurer } from '../../measurer/measurer';
+import { DocumentLayout } from '../document-layout';
+import { LayoutPosition } from '../layout-position';
+import { LayoutTableCellInfo } from './layout-table-cell-info';
+import { LayoutTableColumnInfo } from './layout-table-info';
+export declare class ParentLinkTableCell {
+    parentCell: LayoutTableCellInfo;
+    parentLink: ParentLinkTableCell;
+    layoutRowIndexInParentCell: number;
+    createParentLink(): ParentLinkTableCell;
+    private createParentLinkInternal;
+}
+export declare class TableCellIterator {
+    private position;
+    private layout;
+    private measurer;
+    private tableIndex;
+    private tableInfo;
+    private tableRowIndex;
+    private tableRowInfo;
+    private tableCellIndex;
+    private layoutRowIndexInCell;
+    private layoutRowIndexInLayout;
+    private layoutRowIndexInLayoutInitial;
+    private pageIndex;
+    private pageAreaIndex;
+    private columnIndex;
+    private isDownDirection;
+    private parentLink;
+    private skipCalculateCellIndex;
+    private canCalculateLastCellIndex;
+    private tableCellInfoInternal;
+    get tableCellInfo(): LayoutTableCellInfo;
+    get isInTable(): boolean;
+    constructor(position: LayoutPosition, layout: DocumentLayout, measurer: IMeasurer);
+    private readTables;
+    private getConvertedObjectToArray;
+    private setPositionProperties;
+    private isMainSubDocument;
+    getSelectedInterval(): FixedInterval;
+    getModifyPosition(): LayoutPosition;
+    tryAdvanceToRightCell(): boolean;
+    tryAdvanceToLeftCell(): boolean;
+    tryAdvanceToBelowRow(): boolean;
+    private tryAdvanceToBelowRowInternal;
+    private updateTableInfosIfAdvanceToBelowRow;
+    tryAdvanceToAboveRow(): boolean;
+    getLayoutTablesAssociatedWithLogicGrid(): LayoutTableColumnInfo[];
+    private tryAdvanceToAboveTable;
+    private tryAdvanceToAboveRowInternal;
+    private updateTableInfosIfAdvanceToAboveRow;
+    private tryAdvanceToLayoutRowBelowTable;
+    private isAboveLayoutRowOuterTable;
+    private tryAdvanceToLayoutRowOuterTable;
+    private tryAdvanceToLayoutRowAboveTable;
+    private goToInternalTableIfExistInFirstBelowRow;
+    private goToInternalTableIfExistInLastAboveRow;
+    canAdvanceToBelowRow(): boolean;
+    canAdvanceToAboveRow(): boolean;
+    private resetLayoutRowIndex;
+    private isEqualTables;
+    private getTables;
+    private findNextCellIndex;
+    private findNextCellIndex2;
+}
+//# sourceMappingURL=table-cell-iterator.d.ts.map

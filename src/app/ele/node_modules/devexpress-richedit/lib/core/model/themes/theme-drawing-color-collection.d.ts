@@ -1,0 +1,42 @@
+import { ColorProvider } from '../color/color-provider';
+import { DrawingColor } from '../drawing/drawing-color';
+import { SchemeColorValues } from './enums';
+export declare class ThemeDrawingColorCollection {
+    static readonly schemeColorValuesToThemeColorIndexTranslationTable: Record<number, number>;
+    name: string;
+    private innerCollection;
+    constructor();
+    private tryGetDrawingColor;
+    setDrawingColor(themeColorIndex: number, value: DrawingColor): void;
+    get Light1(): DrawingColor;
+    set Light1(value: DrawingColor);
+    get Light2(): DrawingColor;
+    set Light2(value: DrawingColor);
+    get Dark1(): DrawingColor;
+    set Dark1(value: DrawingColor);
+    get Dark2(): DrawingColor;
+    set Dark2(value: DrawingColor);
+    get Accent1(): DrawingColor;
+    set Accent1(value: DrawingColor);
+    get Accent2(): DrawingColor;
+    set Accent2(value: DrawingColor);
+    get Accent3(): DrawingColor;
+    set Accent3(value: DrawingColor);
+    get Accent4(): DrawingColor;
+    set Accent4(value: DrawingColor);
+    get Accent5(): DrawingColor;
+    set Accent5(value: DrawingColor);
+    get Accent6(): DrawingColor;
+    set Accent6(value: DrawingColor);
+    get Hyperlink(): DrawingColor;
+    set Hyperlink(value: DrawingColor);
+    get FollowedHyperlink(): DrawingColor;
+    set FollowedHyperlink(value: DrawingColor);
+    isValidate(): boolean;
+    getColorByThemeColorIndex(colorProvider: ColorProvider, themeColorIndex: number): number;
+    getColorBySchemeColorValues(colorProvider: ColorProvider, value: SchemeColorValues): number;
+    copyFrom(sourceObj: ThemeDrawingColorCollection): void;
+    clear(): void;
+    private checkValidation;
+}
+//# sourceMappingURL=theme-drawing-color-collection.d.ts.map

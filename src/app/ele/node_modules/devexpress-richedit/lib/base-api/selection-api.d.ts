@@ -1,0 +1,40 @@
+import { RichEditCore } from '../base/rich-edit-core';
+import { IInterval, IntervalApi } from '../model-api/interval';
+import { SubDocumentBaseApi } from './sub-document';
+export declare class RichEditSelectionApi {
+    private _core;
+    constructor(core: RichEditCore);
+    get activeSubDocument(): SubDocumentBaseApi;
+    get anchor(): number;
+    get active(): number;
+    get start(): number;
+    get end(): number;
+    get intervals(): IntervalApi[];
+    get showCursorAtEndOfLine(): boolean;
+    set showCursorAtEndOfLine(value: boolean);
+    setSelection(position: number | IInterval | IInterval[]): void;
+    selectAll(): void;
+    goToSubDocumentEnd(extendSelection?: boolean): void;
+    goToNextLine(extendSelection?: boolean): void;
+    goToLineEnd(extendSelection?: boolean): void;
+    goToLineStart(extendSelection?: boolean): void;
+    goToPreviousLine(extendSelection?: boolean): void;
+    goToNextCharacter(extendSelection?: boolean): void;
+    goToPreviousCharacter(extendSelection?: boolean): void;
+    selectLine(extendSelection?: boolean): void;
+    goToNextPage(extendSelection?: boolean): void;
+    goToPreviousPage(extendSelection?: boolean): void;
+    goToDocumentStart(extendSelection?: boolean): void;
+    goToDocumentEnd(extendSelection?: boolean): void;
+    goToNextWord(extendSelection?: boolean): void;
+    goToPreviousWord(extendSelection?: boolean): void;
+    goToParagraphStart(extendSelection?: boolean): void;
+    goToParagraphEnd(extendSelection?: boolean): void;
+    selectParagraph(): void;
+    goToNextPageStart(extendSelection?: boolean): void;
+    goToPreviousPageStart(extendSelection?: boolean): void;
+    selectTableCell(): void;
+    selectTableRow(): void;
+    selectTable(): void;
+}
+//# sourceMappingURL=selection-api.d.ts.map

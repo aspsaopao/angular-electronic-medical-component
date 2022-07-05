@@ -1,0 +1,52 @@
+import { Rectangle } from '@devexpress/utils/lib/geometry/rectangle';
+import { LayoutPosition } from '../../layout/layout-position';
+import { LayoutColumn } from '../../layout/main-structures/layout-column';
+import { LayoutPage } from '../../layout/main-structures/layout-page';
+import { LayoutPageArea } from '../../layout/main-structures/layout-page-area';
+import { LayoutRow } from '../../layout/main-structures/layout-row';
+import { SubDocument } from '../../model/sub-document';
+import { LayoutRowBoundsCalculator } from '../floating/layout-row-bounds-manager';
+import { FormatterManager } from '../managers/formatter-manager';
+import { RowFormatter } from '../row/formatter';
+import { Formatter } from '../table/formatter';
+import { LayoutFormatterState } from './enums';
+import { LastRowInfo } from './utils/last-row-info';
+export declare class BaseFormatter {
+    protected stateMap: {
+        [state: number]: any;
+    };
+    protected manager: FormatterManager;
+    rowFormatter: RowFormatter;
+    layoutPosition: LayoutPosition;
+    lastRowInfo: LastRowInfo;
+    state: LayoutFormatterState;
+    protected pageAreaBounds: Rectangle;
+    protected columnBounds: Rectangle[];
+    tableFormatter: Formatter;
+    layoutRowBoundsCalculator: LayoutRowBoundsCalculator;
+    constructor(manager: FormatterManager, subDocId: number);
+    initDocumentStart(): void;
+    get subDocument(): SubDocument;
+    protected get currColumnHeight(): number;
+    formatPageArea(pageAreaBounds: Rectangle, columnBounds: Rectangle[], page: LayoutPage): void;
+    private processStatePageAreaStart;
+    private processStateColumnStart;
+    private initializeTextBoxSizeForAutoFitTables;
+    private processStateRowFormatting;
+    private processStateColumnEnd;
+    private createNextPageArea;
+    private createNextColumn;
+    private pushRow;
+    private createRow;
+    private getCurrOffsetForRow;
+    private applyPageBreakBefore;
+    private cantPlaceRowOnThisColumn;
+    private tableIsEditable;
+    private placeAnchorObjects;
+    private getTableStartYOffsetPosition;
+    static correctColumnOffsets(pageArea: LayoutPageArea): void;
+    static correctRowOffsets(column: LayoutColumn): void;
+    static correctBoxOffsets(row: LayoutRow): void;
+    isColumnOk(): void;
+}
+//# sourceMappingURL=base-formatter.d.ts.map

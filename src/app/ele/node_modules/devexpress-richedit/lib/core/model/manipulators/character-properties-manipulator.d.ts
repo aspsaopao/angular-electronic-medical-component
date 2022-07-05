@@ -1,0 +1,42 @@
+import { FixedInterval } from '@devexpress/utils/lib/intervals/fixed';
+import { MaskedCharacterProperties } from '../character/character-properties';
+import { CompositeFontInfo } from '../character/composite-font-info';
+import { CharacterFormattingScript, StrikeoutType, UnderlineType } from '../character/enums';
+import { LangInfo } from '../character/lang-info';
+import { ColorModelInfo } from '../color/color-model-info';
+import { FontInfo } from '../fonts/font-info';
+import { HistoryItemIntervalState } from '../history/states/history-item-state';
+import { HistoryItemIntervalCharacterPropertiesStateObject } from '../history/states/history-item-state-object';
+import { ShadingInfo } from '../shadings/shading-info';
+import { SubDocument } from '../sub-document';
+import { BaseManipulator } from './base-manipulator';
+import { IIntervalPropertyManipulator, IIntervalPropertyWithUseValueManipulator } from './i-properties-manipulator';
+import { ModelManipulator } from './model-manipulator';
+export declare class CharacterPropertiesManipulator extends BaseManipulator {
+    fontBold: IIntervalPropertyWithUseValueManipulator<boolean>;
+    fontItalic: IIntervalPropertyWithUseValueManipulator<boolean>;
+    fontName: IIntervalPropertyWithUseValueManipulator<FontInfo>;
+    fontSize: IIntervalPropertyWithUseValueManipulator<number>;
+    fontCaps: IIntervalPropertyWithUseValueManipulator<boolean>;
+    fontSmallCaps: IIntervalPropertyWithUseValueManipulator<boolean>;
+    fontStrikeoutType: IIntervalPropertyWithUseValueManipulator<StrikeoutType>;
+    fontStrikeoutWordsOnly: IIntervalPropertyWithUseValueManipulator<boolean>;
+    textColor: IIntervalPropertyWithUseValueManipulator<ColorModelInfo>;
+    shadingInfo: IIntervalPropertyWithUseValueManipulator<ShadingInfo>;
+    fontHighlightColor: IIntervalPropertyWithUseValueManipulator<ColorModelInfo>;
+    fontStrikeoutColor: IIntervalPropertyWithUseValueManipulator<ColorModelInfo>;
+    fontUnderlineColor: IIntervalPropertyWithUseValueManipulator<ColorModelInfo>;
+    fontUnderlineType: IIntervalPropertyWithUseValueManipulator<UnderlineType>;
+    fontHidden: IIntervalPropertyWithUseValueManipulator<boolean>;
+    script: IIntervalPropertyWithUseValueManipulator<CharacterFormattingScript>;
+    fontUnderlineWordsOnly: IIntervalPropertyWithUseValueManipulator<boolean>;
+    fontNoProof: IIntervalPropertyWithUseValueManipulator<boolean>;
+    langInfo: IIntervalPropertyWithUseValueManipulator<LangInfo>;
+    compositeFontInfo: IIntervalPropertyWithUseValueManipulator<CompositeFontInfo>;
+    useValue: IIntervalPropertyManipulator<number>;
+    constructor(manipulator: ModelManipulator);
+    resetCharacterFormatting(subDocument: SubDocument, interval: FixedInterval): void;
+    setValue(subDocument: SubDocument, interval: FixedInterval, newValue: MaskedCharacterProperties): HistoryItemIntervalState<HistoryItemIntervalCharacterPropertiesStateObject>;
+    restoreValue(subDocument: SubDocument, state: HistoryItemIntervalState<HistoryItemIntervalCharacterPropertiesStateObject>): void;
+}
+//# sourceMappingURL=character-properties-manipulator.d.ts.map

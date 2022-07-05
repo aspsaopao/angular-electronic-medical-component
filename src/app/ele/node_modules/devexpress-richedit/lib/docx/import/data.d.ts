@@ -1,0 +1,65 @@
+import { FormatImagesImporter } from '../../core/formats/utils/images-import';
+import { DocumentModel } from '../../core/model/document-model';
+import { SubDocument } from '../../core/model/sub-document';
+import { Stack } from '@devexpress/utils/lib/class/stack';
+import { DocxConstants } from '../utils/constants';
+import { ProgressIndication } from '../utils/progress-indication';
+import { XmlReader } from '../zip/xml-reader';
+import { ArchiveData } from '../zip/zip-reader';
+import { ElementDestination } from './destination/destination';
+import { ImporterOptions } from './importer-options';
+import { AltChunkImporter } from './importers/alt-chunk-importer';
+import { CorePropertiesImporter } from './importers/core-properties-importer';
+import { CustomPropertiesImporter } from './importers/custom-properties-importer';
+import { EndNotesImporter } from './importers/end-notes-importer';
+import { FootNotesImporter } from './importers/foot-notes-importer';
+import { HeaderFooterImporter } from './importers/header-footer-importer';
+import { NumberingListImporter } from './importers/numbering-list-importer';
+import { SectionImporter } from './importers/section-importer';
+import { SettingsImporter } from './importers/settings-importer';
+import { StylesImporter } from './importers/styles-importer';
+import { ThemesImporter } from './importers/themes-importer';
+import { WebSettingsImporter } from './importers/web-settings-importer';
+import { ImportSubDocumentInfo } from './model/import-sub-document-info';
+import { ReaderHelper } from './utils/reader-helper';
+import { RelationsCollection } from './utils/relations-collection';
+export declare class DestinationStack extends Stack<ElementDestination> {
+    getThis<T extends ElementDestination>(): T;
+}
+export declare class Data {
+    get subDocumentInfo(): ImportSubDocumentInfo;
+    get subDocument(): SubDocument;
+    readonly options: ImporterOptions;
+    readonly archiveData: ArchiveData;
+    documentRootFolder: string;
+    readonly documentModel: DocumentModel;
+    readonly formatImagesImporter: FormatImagesImporter;
+    readonly progressIndication: ProgressIndication;
+    readonly constants: DocxConstants;
+    readonly readerHelper: ReaderHelper;
+    readonly relationsStack: Stack<RelationsCollection>;
+    readonly corePropertiesImporter: CorePropertiesImporter;
+    readonly customPropertiesImporter: CustomPropertiesImporter;
+    readonly endNotesImporter: EndNotesImporter;
+    readonly footNotesImporter: FootNotesImporter;
+    readonly numberingListImporter: NumberingListImporter;
+    readonly settingsImporter: SettingsImporter;
+    readonly stylesImporter: StylesImporter;
+    readonly themesImporter: ThemesImporter;
+    readonly webSettingsImporter: WebSettingsImporter;
+    readonly headerFooterImporter: HeaderFooterImporter;
+    readonly sectionImporter: SectionImporter;
+    readonly altChunkImporter: AltChunkImporter;
+    destinationStack: DestinationStack;
+    imageRelationToCacheMap: Record<string, number>;
+    private _subDocument;
+    private subDocumentsInfoStack;
+    constructor(options: ImporterOptions, archiveData: ArchiveData, documentModel: DocumentModel);
+    fixLastParagraph(): void;
+    addRelations(filePath: string): Promise<RelationsCollection>;
+    pushCurrentSubDocument(subDocument: SubDocument): void;
+    popCurrentSubDocument(): SubDocument;
+    importContent(reader: XmlReader, initialDestination: ElementDestination): Promise<boolean>;
+    private shouldFixLastParagraph;
+}
+//# sourceMappingURL=data.d.ts.map

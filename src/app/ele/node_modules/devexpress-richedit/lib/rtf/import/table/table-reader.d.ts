@@ -1,0 +1,45 @@
+import { BorderInfo } from '../../../core/model/borders/border-info';
+import { Stack } from '@devexpress/utils/lib/class/stack';
+import { RtfTableCellProperties } from '../model/table/properties/rtf-table-cell-properties';
+import { RtfTableProperties } from '../model/table/properties/rtf-table-properties';
+import { RtfTableRowProperties } from '../model/table/properties/table-row-properties';
+import { RtfTable } from '../model/table/rtf-table';
+import { RtfImportData } from '../rtf-import-data';
+import { RtfTableController } from './rtf-table-controller';
+import { RtfTableState } from './rtf-table-state';
+import { RtfTableReaderStateBase } from './states/state-base';
+export declare class RtfTableReader {
+    private _state;
+    private _tableProperties;
+    private _rowProperties;
+    private _cellProperties;
+    readonly data: RtfImportData;
+    readonly tableStack: Stack<RtfTableState>;
+    readonly tableController: RtfTableController;
+    readonly tables: RtfTable[];
+    cellPropertiesCollection: RtfTableCellProperties[];
+    isNestedTableProperetiesReading: boolean;
+    parentCellMap: Record<number, RtfTable[]>;
+    processedBorder: BorderInfo;
+    rtfTableStyleIndexForRowOrCell: number;
+    constructor(importer: RtfImportData);
+    get state(): RtfTableReaderStateBase;
+    get tableProperties(): RtfTableProperties;
+    get rowProperties(): RtfTableRowProperties;
+    get cellProperties(): RtfTableCellProperties;
+    protected createCellProperties(): void;
+    restoreProperties(state: RtfTableState): void;
+    protected resetProperties(): void;
+    protected createTableController(): RtfTableController;
+    onStartNestedTableProperties(): void;
+    onEndParagraph(): void;
+    onEndRow(): void;
+    onEndCell(): void;
+    onEndNestedRow(): void;
+    onEndNestedCell(): void;
+    onTableRowDefaults(): void;
+    onCellxProperty(value: number): void;
+    resetState(): void;
+    changeState(newState: RtfTableReaderStateBase): void;
+}
+//# sourceMappingURL=table-reader.d.ts.map

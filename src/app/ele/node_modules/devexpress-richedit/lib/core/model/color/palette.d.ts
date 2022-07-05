@@ -1,0 +1,60 @@
+import { ConstInterval } from '@devexpress/utils/lib/intervals/const';
+import { ColorModelInfo } from './color-model-info';
+import { ColorProvider } from './color-provider';
+export declare class ColorDifference {
+    static RGB(x: number, y: number): number;
+    static HSB(x: number, y: number): number;
+}
+export declare class Palette {
+    static readonly BuiltInColorsCount = 8;
+    static readonly DefaultForegroundColorIndex = 64;
+    static readonly DefaultBackgroundColorIndex = 65;
+    static readonly SystemWindowFrameColorIndex = 66;
+    static readonly System3DFaceColorIndex = 67;
+    static readonly System3DTextColorIndex = 68;
+    static readonly System3DHighlightColorIndex = 69;
+    static readonly System3DShadowColorIndex = 70;
+    static readonly SystemHighlightColorIndex = 71;
+    static readonly SystemControlTextColorIndex = 72;
+    static readonly SystemControlScrollColorIndex = 73;
+    static readonly SystemControlInverseColorIndex = 74;
+    static readonly SystemControlBodyColorIndex = 75;
+    static readonly SystemControlFrameColorIndex = 76;
+    static readonly DefaultChartForegroundColorIndex = 77;
+    static readonly DefaultChartBackgroundColorIndex = 78;
+    static readonly ChartNeutralColorIndex = 79;
+    static readonly ToolTipFillColorIndex = 80;
+    static readonly ToolTipTextColorIndex = 81;
+    static readonly FontAutomaticColorIndex = 32767;
+    private colorTable;
+    isCustomIndexedColorTable: boolean;
+    constructor();
+    getColorByIndex(index: number): number;
+    setColor(index: number, color: number): void;
+    reset(): void;
+    get defaultForegroundColor(): number;
+    set defaultForegroundColor(val: number);
+    get defaultBackgroundColor(): number;
+    set defaultBackgroundColor(val: number);
+    get defaultChartForegroundColor(): number;
+    set defaultChartForegroundColor(val: number);
+    get defaultChartBackgroundColor(): number;
+    set defaultChartBackgroundColor(val: number);
+    get chartNeutralColor(): number;
+    get toolTipTextColor(): number;
+    set toolTipTextColor(val: number);
+    get fontAutomaticColor(): number;
+    set fontAutomaticColor(val: number);
+    isValidColorIndex(index: number): boolean;
+    getColorIndex(colorProvider: ColorProvider, colorInfo: ColorModelInfo, foreground: boolean): number;
+    getFontColorIndex(colorProvider: ColorProvider, colorInfo: ColorModelInfo): number;
+    getColorIndexByRgbColor(color: number): number;
+    getExactColorIndex(color: number, indexInterval: ConstInterval): number;
+    getNearestColorIndex(color: number): number;
+    getPaletteNearestColorIndex(color: number): number;
+    isCompatibleColors(x: number, y: number): boolean;
+    getColorDistance(x: number, y: number, rgbWeight: number): number;
+    getNearestColorIndexCore(color: number, indexInterval: ConstInterval): number;
+    clone(): Palette;
+}
+//# sourceMappingURL=palette.d.ts.map
